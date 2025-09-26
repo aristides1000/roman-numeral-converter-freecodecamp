@@ -43,10 +43,31 @@ const arabicToRomanNumber = (number) => {
   const tens = Math.trunc(number / 10) - thousands * 100 - hundreds * 10;
   const units = number - thousands * 1000 - hundreds * 100 - tens * 10;
 
+  const romanValues = [
+    {
+      placeValue: hundreds,
+      unit: 'C',
+      divisibleFive: 'D',
+      divisibleTen: 'M'
+    },
+    {
+      placeValue: tens,
+      unit: 'X',
+      divisibleFive: 'L',
+      divisibleTen: 'C'
+    },
+    {
+      placeValue: units,
+      unit: 'I',
+      divisibleFive: 'V',
+      divisibleTen: 'X'
+    }
+  ];
+
   romanNumber += 'M'.repeat(thousands);
-  romanNumber += converterNumber(hundreds, 'C', 'D','M');
-  romanNumber += converterNumber(tens, 'X', 'L','C');
-  romanNumber += converterNumber(units, 'I', 'V','X');
+  romanValues.forEach(({ placeValue, unit, divisibleFive, divisibleTen}) => {
+    romanNumber += converterNumber(placeValue, unit, divisibleFive, divisibleTen);
+  });
 
   output.textContent = romanNumber;
 };
@@ -59,7 +80,7 @@ const checkNumberInput = () => {
     output.textContent = 'Please enter a valid number';
     return;
   }
-  
+
   if (converterNumberValue <= 0) {
     reset();
     output.textContent = 'Please enter a number greater than or equal to 1';
