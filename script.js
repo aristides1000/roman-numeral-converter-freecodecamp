@@ -7,16 +7,59 @@ const reset = () => {
   output.textContent = '';
 }
 
-const convertRomanNumeral = (numberValue) => {
-  console.log(numberValue);
-  if (!numberValue) {
+const converterNumber = (placeValue, unit, divisibleFive, divisibleTen) => {
+  let romanValue = '';
+
+  switch(placeValue) {
+    case 1:
+    case 2:
+    case 3:
+      romanValue += unit.repeat(placeValue);
+      break;
+    case 4:
+      romanValue += unit + divisibleFive;
+      break;
+    case 5:
+      romanValue += divisibleFive;
+      break;
+    case 6:
+    case 7:
+    case 8:
+      romanValue += divisibleFive + unit.repeat(placeValue - 5);
+      break;
+    case 9:
+      romanValue += unit + divisibleTen;
+      break;
+  }
+
+  return romanValue;
+}
+
+const arabicToRomanNumber = (number) => {
+  let romanNumber = '';
+
+  const thousands = Math.trunc(number / 1000);
+  const hundreds = Math.trunc(number / 100) - thousands * 10;
+  const tens = Math.trunc(number / 10) - thousands * 100 - hundreds * 10;
+  const units = number - thousands * 1000 - hundreds * 100 - tens * 10;
+
+  romanNumber += 'M'.repeat(thousands);
+  romanNumber += converterNumber(hundreds, 'C', 'D','M');
+  romanNumber += converterNumber(tens, 'X', 'L','C');
+  romanNumber += converterNumber(units, 'I', 'V','X');
+
+  output.textContent = romanNumber;
+};
+
+const checkNumberInput = () => {
+  const converterNumberValue = parseInt(number.value);
+
+  if (!number.value) {
     reset();
     output.textContent = 'Please enter a valid number';
     return;
   }
-
-const converterNumberValue = parseInt(numberValue);
-
+  
   if (converterNumberValue <= 0) {
     reset();
     output.textContent = 'Please enter a number greater than or equal to 1';
@@ -28,15 +71,13 @@ const converterNumberValue = parseInt(numberValue);
     output.textContent = 'Please enter a number less than or equal to 3999';
     return;
   }
+  arabicToRomanNumber(converterNumberValue);
 };
 
 number.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    convertRomanNumeral(number.value);
+    checkNumberInput();
   }
 });
 
-/* arreglar esto*/
-convertBtn.addEventListener('click', () => {
-  convertRomanNumeral(number.value);
-});
+convertBtn.addEventListener('click', checkNumberInput);
