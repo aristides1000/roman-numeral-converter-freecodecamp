@@ -14,8 +14,8 @@ body {
 }
 
 img {
-  width: 16.5rem;
-  margin: 3rem 0 2.25rem;
+  width: 264px;
+  margin: 48px 0 36px;
 }
 
 h1 {
@@ -24,19 +24,59 @@ h1 {
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 40px;
 }
 
-form {
+form, p {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #3B3B4F;
+  padding: 32px 45px;
+  border: 3px solid #F5F6F7;
+  width: 31rem;
+  margin-top: 32px;
 }
 
 label {
   color: white;
-  font-size: 1.4rem;
+  font-size: 24px;
   font-family: "Lato", sans-serif;
   font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+input, button {
+  width: 100%;
+}
+
+input {
+  margin-bottom: 1.5rem;
+  font-size: 44px;
+  border: 1px solid #F5F6F7;
+  background-color: #0A0A23;
+  color: white;
+  padding: 5px 10px;
+}
+
+input:focus {
+  outline: 3px solid #198EEE;
+}
+
+button {
+  font-size: 1.5rem;
+  padding: 0.6rem;
+  border-radius: 0;
+  border: 3px solid #FEAC32;
+  background-image: linear-gradient(180deg, #FECB4C, #FEAC32);
+}
+
+p {
+  color: white;
+  font-size: 3rem;
+  font-family: "Lato", sans-serif;
+}
+
+.hidden {
+  display: none;
 }

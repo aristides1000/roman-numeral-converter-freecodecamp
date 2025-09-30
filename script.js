@@ -5,6 +5,7 @@ const output = document.querySelector('#output');
 const reset = () => {
   number.value = '';
   output.textContent = '';
+  output.classList.toggle('hidden');
 }
 
 const converterNumber = (placeValue, unit, divisibleFive, divisibleTen) => {
