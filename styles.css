@@ -32,10 +32,13 @@ form, p {
   flex-direction: column;
   align-items: center;
   background-color: #3B3B4F;
-  padding: 32px 45px;
   border: 3px solid #F5F6F7;
   width: 31rem;
   margin-top: 32px;
+}
+
+form {
+  padding: 32px 45px;
 }
 
 label {
@@ -52,7 +55,7 @@ input, button {
 
 input {
   margin-bottom: 1.5rem;
-  font-size: 44px;
+  font-size: 40px;
   border: 1px solid #F5F6F7;
   background-color: #0A0A23;
   color: white;
@@ -73,10 +76,20 @@ button {
 
 p {
   color: white;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: "Lato", sans-serif;
+  padding: 1rem;
 }
 
 .hidden {
   display: none;
+}
+
+.alert {
+  text-align: center;
+  border: 3px solid #850000;
+  color: #850000;
+  background-color: #FFADAD;
+  font-size: 2rem;
+
 }

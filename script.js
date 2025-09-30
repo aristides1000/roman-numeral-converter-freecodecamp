@@ -5,7 +5,14 @@ const output = document.querySelector('#output');
 const reset = () => {
   number.value = '';
   output.textContent = '';
-  output.classList.toggle('hidden');
+  output.classList.remove('hidden');
+  output.classList.add('alert');
+}
+
+const showResult = (transformedNumber) => {
+  output.classList.remove('hidden');
+  output.classList.remove('alert');
+  output.textContent = transformedNumber;
 }
 
 const converterNumber = (placeValue, unit, divisibleFive, divisibleTen) => {
@@ -70,7 +77,7 @@ const arabicToRomanNumber = (number) => {
     romanNumber += converterNumber(placeValue, unit, divisibleFive, divisibleTen);
   });
 
-  output.textContent = romanNumber;
+  showResult(romanNumber);
 };
 
 const checkNumberInput = () => {
@@ -99,7 +106,11 @@ const checkNumberInput = () => {
 number.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     checkNumberInput();
+    e.preventDefault();
   }
 });
 
-convertBtn.addEventListener('click', checkNumberInput);
+convertBtn.addEventListener('click', (e) => {
+  checkNumberInput();
+  e.preventDefault();
+});
