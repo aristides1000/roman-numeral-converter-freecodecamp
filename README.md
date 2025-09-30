@@ -40,7 +40,7 @@ First check your git credentials
 
 First download this repository with git using the command:
 
-```
+```git
 git clone <URL>
 ```
 
